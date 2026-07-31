@@ -4,6 +4,7 @@
 #include "led.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "oled.h"
 /************************************************
  ALIENTEK 战舰STM32F103开发板 FreeRTOS实验2-1
  FreeRTOS移植实验-库函数版本
@@ -47,6 +48,9 @@ int main(void)
 	delay_init();	    				//延时函数初始化	  
 	uart_init(115200);					//初始化串口
 	LED_Init();		  					//初始化LED
+	OLED_Init();
+	OLED_ColorTurn(0);//0正常显示，1 反色显示
+  OLED_DisplayTurn(0);//0正常显示 1 屏幕翻转显示
 	 
 	//创建开始任务
     xTaskCreate((TaskFunction_t )start_task,            //任务函数
@@ -95,9 +99,8 @@ void led1_task(void *pvParameters)
 {
     while(1)
     {
-				LED0=1;
-        vTaskDelay(200);
-        LED0=0;
-        vTaskDelay(800);
+        OLED_ShowString(76,0,"Temp:",16,1);
+        vTaskDelay(100);
+        OLED_Refresh();
     }
 }
