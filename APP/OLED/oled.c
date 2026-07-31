@@ -213,14 +213,14 @@ void OLED_ShowChar(u8 x,u8 y,u8 chr,u8 size1,u8 mode)
 	chr1=chr-' ';  //计算偏移后的值
 	for(i=0;i<size2;i++)
 	{
-		if(size1==8)
-			  {temp=asc2_0806[chr1][i];} //调用0806字体
-		else if(size1==12)
-        {temp=asc2_1206[chr1][i];} //调用1206字体
-		else if(size1==16)
+		// if(size1==8)
+		// 	  {temp=asc2_0806[chr1][i];} //调用0806字体
+		// else if(size1==12)
+        // {temp=asc2_1206[chr1][i];} //调用1206字体
+		if(size1==16)
         {temp=asc2_1608[chr1][i];} //调用1608字体
-		else if(size1==24)
-        {temp=asc2_2412[chr1][i];} //调用2412字体
+		// else if(size1==24)
+        // {temp=asc2_2412[chr1][i];} //调用2412字体
 		else return;
 		for(m=0;m<8;m++)
 		{
@@ -399,7 +399,7 @@ void OLED_ShowPicture(u8 x,u8 y,u8 sizex,u8 sizey,const u8 BMP[],u8 mode)
 //OLED的初始化
 void OLED_Init(void)
 {
-	SoftI2C_Init(&bus_info);
+	OLED_I2C_Init(&bus_info);
 	
 	OLED_WR_Byte(0xAE,OLED_CMD);//--turn off oled panel
 	OLED_WR_Byte(0x00,OLED_CMD);//---set low column address
@@ -470,3 +470,6 @@ void OLED_ScrollDisplay(u8 num,u8 space,u8 mode)
 		OLED_Refresh();
 	}
 }
+
+
+

@@ -312,7 +312,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>4</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\APP\LED;..\APP\OLED;..\CDD\I2C</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\APP\LED;..\APP\OLED;..\CDD\I2C;..\APP\HDC1080</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -636,6 +636,11 @@
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\LED\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>hdc1080.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\HDC1080\hdc1080.c</FilePath>
             </File>
           </Files>
         </Group>

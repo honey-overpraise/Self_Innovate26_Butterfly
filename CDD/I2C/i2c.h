@@ -20,7 +20,8 @@ typedef struct {
 // ========== I2C原语函数 ==========
 
 // 总线初始化 (配置GPIO)
-void SoftI2C_Init(SoftI2C_Bus *bus);
+void OLED_I2C_Init(SoftI2C_Bus *bus);
+void HDC1080_I2C_Init(SoftI2C_Bus *bus);
 
 // 起始信号
 void I2C_Start(SoftI2C_Bus *bus);

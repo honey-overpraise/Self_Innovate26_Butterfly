@@ -5,6 +5,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "oled.h"
+#include "hdc1080.h"
 /************************************************
  ALIENTEK 战舰STM32F103开发板 FreeRTOS实验2-1
  FreeRTOS移植实验-库函数版本
@@ -48,9 +49,10 @@ int main(void)
 	delay_init();	    				//延时函数初始化	  
 	uart_init(115200);					//初始化串口
 	LED_Init();		  					//初始化LED
-	OLED_Init();
-	OLED_ColorTurn(0);//0正常显示，1 反色显示
-  OLED_DisplayTurn(0);//0正常显示 1 屏幕翻转显示
+    OLED_Init();
+    OLED_ColorTurn(0);//0正常显示，1 反色显示
+    OLED_DisplayTurn(0);//0正常显示 1 屏幕翻转显示
+    HDC1080_Init();
 	 
 	//创建开始任务
     xTaskCreate((TaskFunction_t )start_task,            //任务函数
@@ -89,7 +91,7 @@ void led0_task(void *pvParameters)
 {
     while(1)
     {
-				OLED_ScrollDisplay(4,4,1);
+        OLED_ScrollDisplay(4,4,1);
         vTaskDelay(1);
     }
 }   
@@ -97,10 +99,12 @@ void led0_task(void *pvParameters)
 //LED1任务函数
 void led1_task(void *pvParameters)
 {
+    static float temp;
+    static float humi;
     while(1)
     {
-				OLED_Display_Temp(0,0);
-
+        HDC1080_ReadTempHum(&temp, &humi);
+        OLED_Display_Temp(temp,humi);
         vTaskDelay(100);
     }
 }

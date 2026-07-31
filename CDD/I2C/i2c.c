@@ -20,7 +20,7 @@ void IIC_delay(uint32_t us) {
 }
 
 // ========== 总线初始化 ==========
-void SoftI2C_Init(SoftI2C_Bus *bus) {
+void OLED_I2C_Init(SoftI2C_Bus *bus) {
     GPIO_InitTypeDef GPIO_InitStructure;
 
     // 使能GPIO时钟
@@ -45,6 +45,33 @@ void SoftI2C_Init(SoftI2C_Bus *bus) {
     bus->initialized = 1;
 }
 
+// ========== 2. 初始化函数（在 main 中调用） ==========
+void HDC1080_I2C_Init(SoftI2C_Bus *bus) {
+     GPIO_InitTypeDef  GPIO_InitStructure;
+    
+    // 使能 GPIOB 时钟（根据你的端口修改 RCC_APB2Periph_GPIOx）
+    RCC_APB2PeriphClockCmd(bus->clk_rcc, ENABLE);
+    
+    // ----- SCL: 推挽输出，50MHz -----
+    GPIO_InitStructure.GPIO_Pin   = bus->scl_pin;
+    GPIO_InitStructure.GPIO_Mode  = bus->gpio_mode;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(bus->scl_port, &GPIO_InitStructure);
+    
+    // ----- SDA: 开漏输出，50MHz （核心！） -----
+    GPIO_InitStructure.GPIO_Pin   = bus->sda_pin;
+    GPIO_InitStructure.GPIO_Mode  = bus->gpio_mode; // 开漏模式
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(bus->sda_port, &GPIO_InitStructure);
+    
+    // 总线空闲状态：SCL 和 SDA 都拉高（外部必须接 4.7K 上拉电阻）
+    // GPIO_SetBits(I2C_SCL_PORT, I2C_SCL_PIN);
+    // GPIO_SetBits(I2C_SDA_PORT, I2C_SDA_PIN);
+    SCL_HIGH(bus);
+    SDA_HIGH(bus);
+    bus->initialized = 1;
+}
+
 // ========== 起始信号 ==========
 void I2C_Start(SoftI2C_Bus *bus) {
     SDA_HIGH(bus);
@@ -66,23 +93,46 @@ void I2C_Stop(SoftI2C_Bus *bus) {
 //写入一个字节
 void Send_Byte(SoftI2C_Bus *bus, uint8_t dat)
 {
-	u8 i;
-	for(i=0;i<8;i++)
-	{
-		if(dat&0x80)//将dat的8位从最高位依次写入
-		{
-			SDA_HIGH(bus);
+    if(bus->scl_pin == GPIO_Pin_11)
+    {
+        u8 i;
+        for(i=0;i<8;i++)
+        {
+            if(dat&0x80)//将dat的8位从最高位依次写入
+            {
+                SDA_HIGH(bus);
+        }
+            else
+            {
+                SDA_LOW(bus);
+        }
+            IIC_delay(5);
+            SCL_HIGH(bus);
+            IIC_delay(5);
+            SCL_LOW(bus);//将时钟信号设置为低电平
+            dat<<=1;
+        }
     }
-		else
-		{
-			SDA_LOW(bus);
+    else
+    {
+        uint8_t i;
+        for (i = 0; i < 8; i++) 
+        {
+            if (dat & 0x80) SDA_HIGH(bus);
+            else            SDA_LOW(bus);
+            dat <<= 1;
+            SCL_HIGH(bus);
+            IIC_delay(5);
+            SCL_LOW(bus);
+            IIC_delay(5);
+        }
+        // 释放 SDA，读取从机应答
+        SDA_HIGH(bus);
+        SCL_HIGH(bus);
+        IIC_delay(5);
+        uint8_t ack = SDA_READ(bus); 
+        SCL_LOW(bus);
     }
-		IIC_delay(5);
-		SCL_HIGH(bus);
-		IIC_delay(5);
-		SCL_LOW(bus);//将时钟信号设置为低电平
-		dat<<=1;
-  }
 }
 
 // ========== 读一个字节 ==========
@@ -116,19 +166,34 @@ uint8_t I2C_ReadByte(SoftI2C_Bus *bus, uint8_t is_last) {
 // 返回0=成功, 1=超时失败
 uint8_t I2C_WaitAck(SoftI2C_Bus *bus) {
     uint8_t errTime = 0;
-    SDA_HIGH(bus);
-    delay_us(1);
-    SCL_HIGH(bus);
-    delay_us(1);
-    // while (SDA_READ(bus)) {
-    //     errTime++;
-    //     if (errTime > 250) {
-    //         I2C_Stop(bus);
-    //         return 1;
-    //     }
-    // }
-    SCL_LOW(bus);
-    delay_us(1);
-    return 0;
+
+    if(bus->scl_pin == GPIO_Pin_11)
+    {
+        SDA_HIGH(bus);
+        delay_us(1);
+        SCL_HIGH(bus);
+        delay_us(1);
+        SCL_LOW(bus);
+        delay_us(1);
+        return 0;
+    }
+    else
+    {
+        SDA_HIGH(bus);
+        delay_us(1);
+        SCL_HIGH(bus);
+        delay_us(1);
+        while (SDA_READ(bus)) {
+            errTime++;
+            if (errTime > 250) {
+                I2C_Stop(bus);
+                return 1;
+            }
+        }
+        SCL_LOW(bus);
+        delay_us(1);
+        return 0;
+    }
 }
+
 
