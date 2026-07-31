@@ -3,6 +3,8 @@
 #include "sys.h"
 #include "math.h"
 #include "i2c.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 // ========== 1. 修改这里的引脚定义 ==========
 #define I2C_SCL_PORT   GPIOA
@@ -53,7 +55,8 @@ void Read_Temp_Humi_Reg(uint8_t *data)
     // I2C_WaitAck();
     Send_Byte(&hdc1080_bus_info,HDC1080_TEMP_REG);   //触发测量
     I2C_WaitAck(&hdc1080_bus_info);
-    delay_ms(20);   /* Temp转换时间 + Humi转换时间 = 20ms */
+    vTaskDelay(pdMS_TO_TICKS(20));
+    // delay_ms(20);   /* Temp转换时间 + Humi转换时间 = 20ms */
     I2C_Start(&hdc1080_bus_info);   //起始信号
     Send_Byte(&hdc1080_bus_info,HDC1080_ADDRESS+1);   //发送HDC1080设备地址+读信号
     // I2C_WaitAck();

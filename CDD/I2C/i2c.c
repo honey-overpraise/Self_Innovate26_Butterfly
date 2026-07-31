@@ -170,19 +170,19 @@ uint8_t I2C_WaitAck(SoftI2C_Bus *bus) {
     if(bus->scl_pin == GPIO_Pin_11)
     {
         SDA_HIGH(bus);
-        delay_us(1);
+        IIC_delay(1);
         SCL_HIGH(bus);
-        delay_us(1);
+        IIC_delay(1);
         SCL_LOW(bus);
-        delay_us(1);
+        IIC_delay(1);
         return 0;
     }
     else
     {
         SDA_HIGH(bus);
-        delay_us(1);
+        IIC_delay(1);
         SCL_HIGH(bus);
-        delay_us(1);
+        IIC_delay(1);
         while (SDA_READ(bus)) {
             errTime++;
             if (errTime > 250) {
@@ -191,7 +191,7 @@ uint8_t I2C_WaitAck(SoftI2C_Bus *bus) {
             }
         }
         SCL_LOW(bus);
-        delay_us(1);
+        IIC_delay(1);
         return 0;
     }
 }

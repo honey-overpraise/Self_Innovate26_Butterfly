@@ -4,8 +4,10 @@
 #include "led.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "timers.h"
 #include "oled.h"
 #include "hdc1080.h"
+#include "stepper_motor.h"
 /************************************************
  ALIENTEK 战舰STM32F103开发板 FreeRTOS实验2-1
  FreeRTOS移植实验-库函数版本
@@ -43,6 +45,9 @@ TaskHandle_t LED1Task_Handler;
 //任务函数
 void led1_task(void *pvParameters);
 
+TimerHandle_t 	AutoReloadTimer_Handle;			//周期定时器句柄
+void AutoReloadCallback(TimerHandle_t xTimer); 	//周期定时器回调函数
+
 int main(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);//设置系统中断优先级分组4	 
@@ -53,7 +58,9 @@ int main(void)
     OLED_ColorTurn(0);//0正常显示，1 反色显示
     OLED_DisplayTurn(0);//0正常显示 1 屏幕翻转显示
     HDC1080_Init();
-	 
+    StepperMotor_Init();  //步进电机初始化
+	motor_run();	
+
 	//创建开始任务
     xTaskCreate((TaskFunction_t )start_task,            //任务函数
                 (const char*    )"start_task",          //任务名称
@@ -81,7 +88,13 @@ void start_task(void *pvParameters)
                 (uint16_t       )LED1_STK_SIZE, 
                 (void*          )NULL,
                 (UBaseType_t    )LED1_TASK_PRIO,
-                (TaskHandle_t*  )&LED1Task_Handler);         
+                (TaskHandle_t*  )&LED1Task_Handler);
+                
+    // AutoReloadTimer_Handle=xTimerCreate((const char*		)"AutoReloadTimer",
+    //                                     (TickType_t			)pdMS_TO_TICKS(1),//1ms
+    //                                     (UBaseType_t		)pdTRUE,//周期
+    //                                     (void*				)1,
+    //                                     (TimerCallbackFunction_t)AutoReloadCallback); //周期定时器	
     vTaskDelete(StartTask_Handler); //删除开始任务
     taskEXIT_CRITICAL();            //退出临界区
 }
@@ -101,10 +114,16 @@ void led1_task(void *pvParameters)
 {
     static float temp;
     static float humi;
+    // xTimerStart(AutoReloadTimer_Handle,0);	//开启周期定时器
     while(1)
     {
+        
         HDC1080_ReadTempHum(&temp, &humi);
-        OLED_Display_Temp(temp,humi);
+		OLED_Display_Temp(temp,humi);
         vTaskDelay(100);
     }
+}
+
+void AutoReloadCallback(TimerHandle_t xTimer) 	//周期定时器回调函数
+{
 }
