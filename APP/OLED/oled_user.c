@@ -23,38 +23,31 @@ const unsigned char *GIFList[] = {
     gImage_18
 };
 
-//void OLED_Display_Temp(float temp,float humi)
-//{
-//    static uint16_t timer_cnt = 0;
-//    uint8_t dec_temp = 0;
-//    uint8_t dec_humi = 0;
-//    /*显示温度*/
-//    timer_cnt ++;
-//    // if(timer_cnt >= 2)
-//    {
-//        dec_temp = (uint8_t)(temp*10);
-//        dec_humi = (uint8_t)(humi*10);
-//            OLED_ShowString(76,0,"Temp:",16,1);
-//            OLED_ShowNum(72,20,temp,2,16,1);
-//            OLED_ShowString(88,20,".",16,1);
-//            OLED_ShowNum(92,20,(dec_temp%10),1,16,1);
-//            OLED_ShowChinese(104,20,4,16,1);//??
-//        OLED_Display_Butterfly();
-//        timer_cnt = 0;
-//    }
-//    OLED_Refresh();
-//}
+void OLED_Display_Temp(float temp,float humi)
+{
+    uint8_t dec_temp = 0;
+    uint8_t dec_humi = 0;
+    /*显示温度*/
+    dec_temp = (uint8_t)(temp*10);
+    dec_humi = (uint8_t)(humi*10);
+    OLED_ShowString(76,0,"Temp:",16,1);
+    OLED_ShowNum(72,20,temp,2,16,1);
+    OLED_ShowString(88,20,".",16,1);
+    OLED_ShowNum(92,20,(dec_temp%10),1,16,1);
+    OLED_ShowChinese(104,20,4,16,1);//??
+    OLED_Display_Butterfly();
+}
 
-//void OLED_Display_Butterfly(void)
-//{
-//    static uint8_t printf_cnt = 0;
-//    if(printf_cnt >= 18)
-//    {
-//        printf_cnt = 0;
-//    }
-//    OLED_ShowPicture(0,0,64,64,GIFList[printf_cnt],1);
-//	OLED_Refresh();
-//    // delay_ms(100);
-//    printf_cnt++;
-//}
+void OLED_Display_Butterfly(void)
+{
+   static uint8_t printf_cnt = 0;
+   if(printf_cnt >= 18)
+   {
+       printf_cnt = 0;
+   }
+   OLED_ShowPicture(0,0,64,64,GIFList[printf_cnt],1);
+	// OLED_Refresh();
+   // delay_ms(100);
+   printf_cnt++;
+}
 

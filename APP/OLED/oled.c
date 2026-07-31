@@ -301,12 +301,12 @@ void OLED_ShowChinese(u8 x,u8 y,u8 num,u8 size1,u8 mode)
 	{
 		if(size1==16)
 				{temp=Hzk1[num][i];}//调用16*16字体
-		else if(size1==24)
-				{temp=Hzk2[num][i];}//调用24*24字体
-		else if(size1==32)       
-				{temp=Hzk3[num][i];}//调用32*32字体
-		else if(size1==64)
-				{temp=Hzk4[num][i];}//调用64*64字体
+		// else if(size1==24)
+		// 		{temp=Hzk2[num][i];}//调用24*24字体
+		// else if(size1==32)       
+		// 		{temp=Hzk3[num][i];}//调用32*32字体
+		// else if(size1==64)
+		// 		{temp=Hzk4[num][i];}//调用64*64字体
 		else return;
 		for(m=0;m<8;m++)
 		{
@@ -325,49 +325,49 @@ void OLED_ShowChinese(u8 x,u8 y,u8 num,u8 size1,u8 mode)
 //num 显示汉字的个数
 //space 每一遍显示的间隔
 //mode:0,反色显示;1,正常显示
-void OLED_ScrollDisplay(u8 num,u8 space,u8 mode)
-{
-	u8 i,n,t=0,m=0,r;
-	while(1)
-	{
-		if(m==0)
-		{
-	    OLED_ShowChinese(128,24,t,16,mode); //写入一个汉字保存在OLED_GRAM[][]数组中
-			t++;
-		}
-		if(t==num)
-			{
-				for(r=0;r<16*space;r++)      //显示间隔
-				 {
-					for(i=1;i<144;i++)
-						{
-							for(n=0;n<8;n++)
-							{
-								OLED_GRAM[i-1][n]=OLED_GRAM[i][n];
-							}
-						}
-           OLED_Refresh();
-				 }
-        t=0;
-      }
-		m++;
-		if(m==16){m=0;}
-		for(i=1;i<144;i++)   //实现左移
-		{
-			for(n=0;n<8;n++)
-			{
-				OLED_GRAM[i-1][n]=OLED_GRAM[i][n];
-			}
-		}
-		OLED_Refresh();
-	}
-}
+// void OLED_ScrollDisplay(u8 num,u8 space,u8 mode)
+// {
+// 	u8 i,n,t=0,m=0,r;
+// 	while(1)
+// 	{
+// 		if(m==0)
+// 		{
+// 	    OLED_ShowChinese(128,24,t,16,mode); //写入一个汉字保存在OLED_GRAM[][]数组中
+// 			t++;
+// 		}
+// 		if(t==num)
+// 			{
+// 				for(r=0;r<16*space;r++)      //显示间隔
+// 				 {
+// 					for(i=1;i<144;i++)
+// 						{
+// 							for(n=0;n<8;n++)
+// 							{
+// 								OLED_GRAM[i-1][n]=OLED_GRAM[i][n];
+// 							}
+// 						}
+//            OLED_Refresh();
+// 				 }
+//         t=0;
+//       }
+// 		m++;
+// 		if(m==16){m=0;}
+// 		for(i=1;i<144;i++)   //实现左移
+// 		{
+// 			for(n=0;n<8;n++)
+// 			{
+// 				OLED_GRAM[i-1][n]=OLED_GRAM[i][n];
+// 			}
+// 		}
+// 		OLED_Refresh();
+// 	}
+// }
 
 //x,y：起点坐标
 //sizex,sizey,图片长宽
 //BMP[]：要写入的图片数组
 //mode:0,反色显示;1,正常显示
-void OLED_ShowPicture(u8 x,u8 y,u8 sizex,u8 sizey,u8 BMP[],u8 mode)
+void OLED_ShowPicture(u8 x,u8 y,u8 sizex,u8 sizey,const u8 BMP[],u8 mode)
 {
 	u16 j=0;
 	u8 i,n,temp,m;
@@ -430,3 +430,43 @@ void OLED_Init(void)
 	OLED_WR_Byte(0xAF,OLED_CMD);
 }
 
+//num 显示汉字的个数
+//space 每一遍显示的间隔
+//mode:0,反色显示;1,正常显示
+void OLED_ScrollDisplay(u8 num,u8 space,u8 mode)
+{
+	static u8 i,n,t=0,m=0,r;
+	// while(1)
+	{
+		if(m==0)
+		{
+	    	OLED_ShowChinese(124,44,t,16,mode); //写入一个汉字保存在OLED_GRAM[][]数组中
+			t++;
+		}
+		if(t==num)
+			{
+				for(r=0;r<16*space;r++)      //显示间隔
+				 {
+					for(i=65;i<144;i++)
+						{
+							for(n=5;n<8;n++)
+							{
+								OLED_GRAM[i-1][n]=OLED_GRAM[i][n];
+							}
+						}
+           OLED_Refresh();
+				 }
+        t=0;
+      }
+		m++;
+		if(m==16){m=0;}
+		for(i=65;i<144;i++)   //实现左移
+		{
+			for(n=5;n<8;n++)
+			{
+				OLED_GRAM[i-1][n]=OLED_GRAM[i][n];
+			}
+		}
+		OLED_Refresh();
+	}
+}

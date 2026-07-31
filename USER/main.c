@@ -89,8 +89,8 @@ void led0_task(void *pvParameters)
 {
     while(1)
     {
-
-        vTaskDelay(1000);
+				OLED_ScrollDisplay(4,4,1);
+        vTaskDelay(1);
     }
 }   
 
@@ -99,8 +99,8 @@ void led1_task(void *pvParameters)
 {
     while(1)
     {
-        OLED_ShowString(76,0,"Temp:",16,1);
+				OLED_Display_Temp(0,0);
+
         vTaskDelay(100);
-        OLED_Refresh();
     }
 }
