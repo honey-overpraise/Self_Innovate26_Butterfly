@@ -105,21 +105,22 @@ void led0_task(void *pvParameters)
     while(1)
     {
         OLED_ScrollDisplay(4,4,1);
-        vTaskDelay(1);
+        vTaskDelay(5);
     }
 }   
 
 //LED1任务函数
 void led1_task(void *pvParameters)
 {
+    static float raw_temp;
     static float temp;
     static float humi;
     // xTimerStart(AutoReloadTimer_Handle,0);	//开启周期定时器
     while(1)
     {
-        
-        HDC1080_ReadTempHum(&temp, &humi);
-		OLED_Display_Temp(temp,humi);
+        HDC1080_ReadTempHum(&raw_temp, &humi);
+        temp = HDC1080_ReadTemp_Smooth(raw_temp);
+        OLED_Display_Temp(temp,humi);
         vTaskDelay(100);
     }
 }

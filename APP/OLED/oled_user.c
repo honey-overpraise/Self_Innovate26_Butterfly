@@ -25,11 +25,11 @@ const unsigned char *GIFList[] = {
 
 void OLED_Display_Temp(float temp,float humi)
 {
-    uint8_t dec_temp = 0;
-    uint8_t dec_humi = 0;
+    uint16_t dec_temp = 0;
+    uint16_t dec_humi = 0;
     /*ÏÔÊ¾ÎÂ¶È*/
-    dec_temp = (uint8_t)(temp*10);
-    dec_humi = (uint8_t)(humi*10);
+    dec_temp = (uint16_t)(temp*10);
+    dec_humi = (uint16_t)(humi*10);
     OLED_ShowString(76,0,"Temp:",16,1);
     OLED_ShowNum(72,20,temp,2,16,1);
     OLED_ShowString(88,20,".",16,1);

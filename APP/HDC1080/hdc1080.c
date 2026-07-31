@@ -12,7 +12,7 @@
 
 #define I2C_SDA_PORT   GPIOA
 #define I2C_SDA_PIN    GPIO_Pin_10
-
+#define FILTER_LEN  5
 SoftI2C_Bus hdc1080_bus_info = 
 {
 	GPIOA,
@@ -98,4 +98,42 @@ void HDC1080_HeaterOff(void)
     I2C_Stop(&hdc1080_bus_info);
 
     delay_ms(2);
+}
+
+//滑动平均滤波+限幅
+float HDC1080_ReadTemp_Smooth(float get_temp)
+{
+    static uint8_t first_flag = 0;
+    static float buffer[FILTER_LEN] = {25.0f};
+    static uint8_t idx = 0;
+    static float last_valid = 25.0f;
+    float temp;
+    float sum = 0.0f;
+    uint8_t i;
+
+    if(!first_flag)
+    {
+        last_valid = get_temp;
+        first_flag = 1;
+        for (i = 0; i < FILTER_LEN; i++) buffer[i] = get_temp;
+        return get_temp;
+    }
+    // 原始读取
+    temp = get_temp;
+
+    // 限幅：跳变超过2℃认为异常
+    if (fabs(temp - last_valid) > 2.0f) {
+        temp = last_valid;
+    } else {
+        last_valid = temp;
+    }
+
+    // 滑动平均
+    buffer[idx] = temp;
+    idx = (idx + 1) % FILTER_LEN;
+    for (i = 0; i < FILTER_LEN; i++) {
+        sum += buffer[i];
+    }
+
+    return sum / FILTER_LEN;
 }

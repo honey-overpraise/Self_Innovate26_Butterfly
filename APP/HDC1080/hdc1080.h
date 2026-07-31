@@ -20,6 +20,7 @@ void I2C_Delay_us(uint32_t us);
 void Read_Temp_Humi_Reg(uint8_t *data);
 void HDC1080_HeaterOn(void);
 void HDC1080_HeaterOff(void);
+float HDC1080_ReadTemp_Smooth(float get_temp);
 
 #endif
 

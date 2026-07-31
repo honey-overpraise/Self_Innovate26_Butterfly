@@ -1,5 +1,5 @@
 Dependencies for Project 'Template', Target 'Template': (DO NOT MODIFY !)
-F (.\main.c)(0x6A6CBB0F)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\APP\LED -I ..\APP\OLED -I ..\APP\HDC1080 -I ..\APP\MOTOR -I ..\CDD\I2C-I.\RTE\_Template-ID:\Keil_v5\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x6A6CCBFB)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\APP\LED -I ..\APP\OLED -I ..\APP\HDC1080 -I ..\APP\MOTOR -I ..\CDD\I2C-I.\RTE\_Template-ID:\Keil_v5\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\SYSTEM\sys\sys.h)(0x6A6C2FB6)
 I (..\USER\stm32f10x.h)(0x5822B9C0)
 I (..\CORE\core_cm3.h)(0x5822B9BF)
@@ -46,7 +46,7 @@ I (..\FreeRTOS\include\list.h)(0x69CA9BB2)
 I (..\FreeRTOS\include\timers.h)(0x69CA9BB2)
 I (..\APP\OLED\oled.h)(0x6A6C8232)
 I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
-I (..\APP\HDC1080\hdc1080.h)(0x6A6CACFB)
+I (..\APP\HDC1080\hdc1080.h)(0x6A6CC132)
 I (..\APP\MOTOR\stepper_motor.h)(0x6A6CB6B7)
 F (.\stm32f10x_it.c)(0x6A6C2BC2)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\APP\LED -I ..\APP\OLED -I ..\APP\HDC1080 -I ..\APP\MOTOR -I ..\CDD\I2C-I.\RTE\_Template-ID:\Keil_v5\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
 I (stm32f10x_it.h)(0x5822B9C0)
@@ -1324,7 +1324,7 @@ I (D:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x599ECD2C)
 I (..\APP\OLED\oledfont.h)(0x6A6CACFB)
 I (..\SYSTEM\delay\delay.h)(0x6A6C308D)
 I (..\CDD\I2C\i2c.h)(0x6A6CACFB)
-F (..\APP\OLED\oled_user.c)(0x6A6C8263)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\APP\LED -I ..\APP\OLED -I ..\APP\HDC1080 -I ..\APP\MOTOR -I ..\CDD\I2C-I.\RTE\_Template-ID:\Keil_v5\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER-o ..\obj\oled_user.o --omf_browse ..\obj\oled_user.crf --depend ..\obj\oled_user.d)
+F (..\APP\OLED\oled_user.c)(0x6A6CCB57)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\APP\LED -I ..\APP\OLED -I ..\APP\HDC1080 -I ..\APP\MOTOR -I ..\CDD\I2C-I.\RTE\_Template-ID:\Keil_v5\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER-o ..\obj\oled_user.o --omf_browse ..\obj\oled_user.crf --depend ..\obj\oled_user.d)
 I (..\APP\OLED\oled.h)(0x6A6C8232)
 I (..\SYSTEM\sys\sys.h)(0x6A6C2FB6)
 I (..\USER\stm32f10x.h)(0x5822B9C0)
@@ -1389,8 +1389,8 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x5822B9C0)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x5822B9C0)
 I (..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h)(0x5822B9C0)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x5822B9BF)
-F (..\APP\HDC1080\hdc1080.c)(0x6A6CBB5C)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\APP\LED -I ..\APP\OLED -I ..\APP\HDC1080 -I ..\APP\MOTOR -I ..\CDD\I2C-I.\RTE\_Template-ID:\Keil_v5\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER-o ..\obj\hdc1080.o --omf_browse ..\obj\hdc1080.crf --depend ..\obj\hdc1080.d)
-I (..\APP\HDC1080\hdc1080.h)(0x6A6CACFB)
+F (..\APP\HDC1080\hdc1080.c)(0x6A6CCC25)(--c99 -c --cpu Cortex-M3 -g -O3 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\STM32F10x_FWLib\inc -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\FreeRTOS\include -I ..\FreeRTOS\portable\RVDS\ARM_CM3 -I ..\APP\LED -I ..\APP\OLED -I ..\APP\HDC1080 -I ..\APP\MOTOR -I ..\CDD\I2C-I.\RTE\_Template-ID:\Keil_v5\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="527" -DSTM32F10X_LD -DUSE_STDPERIPH_DRIVER-o ..\obj\hdc1080.o --omf_browse ..\obj\hdc1080.crf --depend ..\obj\hdc1080.d)
+I (..\APP\HDC1080\hdc1080.h)(0x6A6CC132)
 I (..\USER\stm32f10x.h)(0x5822B9C0)
 I (..\CORE\core_cm3.h)(0x5822B9BF)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599ECD2E)

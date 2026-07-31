@@ -119,6 +119,10 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>UL2CM3</Key>
           <Name>UL2CM3(-S0 -C0 -P0 )  -FN1 -FC1000 -FD20000000 -FF0STM32F10x_128 -FL020000 -FS08000000 -FP0($$Device:STM32F103C6$Flash\STM32F10x_128.FLM)</Name>
         </SetRegEntry>
@@ -149,16 +153,32 @@
           <Type>0</Type>
           <LineNumber>104</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134225266</Address>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>.\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>125</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134224488</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\璧勬枡\鏈烘铦磋澏\Self_Innovate26_Butterfly\USER\main.c</Filename>
+          <Filename>D:\璧勬枡\鏈烘铦磋澏\project\Self_Innovate26_Butterfly\USER\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Template\main.c\104</Expression>
+          <Expression>\\Template\main.c\125</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
