@@ -6,10 +6,10 @@
 
 // 引脚定义
 #define MOTOR_PORT GPIOA
-#define MOTOR_PIN1 GPIO_Pin_0
-#define MOTOR_PIN2 GPIO_Pin_1
-#define MOTOR_PIN3 GPIO_Pin_2
-#define MOTOR_PIN4 GPIO_Pin_3
+#define MOTOR_PIN1 GPIO_Pin_4
+#define MOTOR_PIN2 GPIO_Pin_5
+#define MOTOR_PIN3 GPIO_Pin_6
+#define MOTOR_PIN4 GPIO_Pin_7
 
 // 旋转方向
 typedef enum {
