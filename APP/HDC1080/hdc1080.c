@@ -137,3 +137,6 @@ float HDC1080_ReadTemp_Smooth(float get_temp)
 
     return sum / FILTER_LEN;
 }
+
+
+

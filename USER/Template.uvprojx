@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\APP\LED;..\APP\OLED;..\APP\HDC1080;..\APP\MOTOR;..\CDD\I2C</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\APP\LED;..\APP\OLED;..\APP\HDC1080;..\APP\MOTOR;..\CDD\I2C;..\APP\WTK6900</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -646,6 +646,11 @@
               <FileName>stepper_motor.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\MOTOR\stepper_motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>wtk6900.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\WTK6900\wtk6900.c</FilePath>
             </File>
           </Files>
         </Group>

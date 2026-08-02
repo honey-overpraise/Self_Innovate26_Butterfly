@@ -8,6 +8,7 @@
 #include "oled.h"
 #include "hdc1080.h"
 #include "stepper_motor.h"
+#include "wtk6900.h"
 /************************************************
  ALIENTEK 战舰STM32F103开发板 FreeRTOS实验2-1
  FreeRTOS移植实验-库函数版本
@@ -60,7 +61,7 @@ int main(void)
     HDC1080_Init();
     StepperMotor_Init();  //步进电机初始化
 	motor_run();	
-
+    WTK6900_Init(9600);
 	//创建开始任务
     xTaskCreate((TaskFunction_t )start_task,            //任务函数
                 (const char*    )"start_task",          //任务名称
@@ -121,7 +122,13 @@ void led1_task(void *pvParameters)
         HDC1080_ReadTempHum(&raw_temp, &humi);
         temp = HDC1080_ReadTemp_Smooth(raw_temp);
         OLED_Display_Temp(temp,humi);
-        vTaskDelay(100);
+
+        /*uart test display*/
+        // OLED_ShowNum(72,16,buffer[0],3,16,1);
+        // OLED_ShowNum(72,34,buffer[1],3,16,1);
+        // OLED_ShowNum(72,52,buffer[2],3,16,1);
+        // vTaskDelay(100);
+        OLED_Refresh();
     }
 }
 
