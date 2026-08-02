@@ -6,12 +6,6 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-// ========== 1. 修改这里的引脚定义 ==========
-#define I2C_SCL_PORT   GPIOA
-#define I2C_SCL_PIN    GPIO_Pin_9
-
-#define I2C_SDA_PORT   GPIOA
-#define I2C_SDA_PIN    GPIO_Pin_10
 #define FILTER_LEN  5
 SoftI2C_Bus hdc1080_bus_info = 
 {
