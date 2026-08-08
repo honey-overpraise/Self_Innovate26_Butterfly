@@ -1,6 +1,8 @@
 #include "wtk6900.h"
 #include "usart.h"
 
+
+uint8_t receive_data = 0;
 //uart2
 void WTK6900_Init(u32 bound)
 {
@@ -57,7 +59,7 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 		switch(count)
 		{
 			case 0:
-				if(Res == 0x7E)
+				if(Res == 0xAA)
 				{
 					count ++;
 				}
@@ -68,41 +70,23 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 			break;
 
 			case 1:
-				if(Res == 0x06)
-				{
-					count ++;
-				}
-				else
-				{
-					count = 0;
-				}
-			break;
-
-			case 2:
-				if(Res == 0xFF)
-				{
-					count ++;
-				}
-				else
-				{
-					count = 0;
-				}
-			break;
-
-			case 3:
 				buffer[uart2_byte_count] = Res;
 				uart2_byte_count ++;
-				if(uart2_byte_count >= 3)
+				if(uart2_byte_count >= 1)
 				{
 					uart2_byte_count = 0;
 					count ++;
 				}
 			break;
 
-			case 4:
-				if(Res == 0xEF)
+			case 2:
+				if(Res == 0xAE)
 				{
-					
+					receive_data = buffer[0];
+				}
+				else
+				{
+
 				}
 				count = 0;
 			break;

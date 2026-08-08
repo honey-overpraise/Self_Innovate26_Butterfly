@@ -119,6 +119,10 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>UL2CM3</Key>
           <Name>UL2CM3(-S0 -C0 -P0 )  -FN1 -FC1000 -FD20000000 -FF0STM32F10x_128 -FL020000 -FS08000000 -FP0($$Device:STM32F103C6$Flash\STM32F10x_128.FLM)</Name>
         </SetRegEntry>
@@ -147,18 +151,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>125</LineNumber>
+          <LineNumber>64</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134224666</Address>
+          <Address>134223928</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\璧勬枡\鏈烘铦磋澏\project\Self_Innovate26_Butterfly\USER\main.c</Filename>
+          <Filename>D:\璧勬枡\鏈烘铦磋澏\project\Self_Innovate26_Butterfly\APP\WTK6900\wtk6900.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Template\main.c\125</Expression>
+          <Expression>\\Template\../APP/WTK6900/wtk6900.c\64</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>85</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134223958</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>D:\璧勬枡\鏈烘铦磋澏\project\Self_Innovate26_Butterfly\APP\WTK6900\wtk6900.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../APP/WTK6900/wtk6900.c\85</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
@@ -863,6 +883,18 @@
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+    <File>
+      <GroupNumber>8</GroupNumber>
+      <FileNumber>50</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\APP\app_user.c</PathWithFileName>
+      <FilenameWithoutPath>app_user.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
   </Group>
 
   <Group>
@@ -873,7 +905,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>50</FileNumber>
+      <FileNumber>51</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>

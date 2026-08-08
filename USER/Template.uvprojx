@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\APP\LED;..\APP\OLED;..\APP\HDC1080;..\APP\MOTOR;..\CDD\I2C;..\APP\WTK6900;..\APP\BH1750;..\APP\LIGHT</IncludePath>
+              <IncludePath>..\USER;..\CORE;..\STM32F10x_FWLib\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM3;..\APP\LED;..\APP\OLED;..\APP\HDC1080;..\APP\MOTOR;..\CDD\I2C;..\APP\WTK6900;..\APP\BH1750;..\APP\LIGHT;..\APP</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -661,6 +661,11 @@
               <FileName>light.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\APP\LIGHT\light.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_user.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\APP\app_user.c</FilePath>
             </File>
           </Files>
         </Group>

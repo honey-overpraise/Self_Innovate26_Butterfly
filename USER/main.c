@@ -11,6 +11,7 @@
 #include "wtk6900.h"
 #include "bh1750.h"
 #include "light.h"
+#include "app_user.h"
 /************************************************
  ALIENTEK 战舰STM32F103开发板 FreeRTOS实验2-1
  FreeRTOS移植实验-库函数版本
@@ -124,17 +125,18 @@ void led1_task(void *pvParameters)
     // xTimerStart(AutoReloadTimer_Handle,0);	//开启周期定时器
     while(1)
     {
-        uint64_t timestamp = xTaskGetTickCount();
-        if(timestamp >= 5000)//5s后
-        {
-            set_led_on();
-        }
+
+        switch_func();
+        check_lighting();
         HDC1080_ReadTempHum(&raw_temp, &humi);
         temp = HDC1080_ReadTemp_Smooth(raw_temp);
         OLED_Display_Temp(temp,humi);
 
+        
+
+
         /*uart test display*/
-        // OLED_ShowNum(72,16,buf_lux[0],6,16,1);
+        // OLED_ShowNum(72,16,receive_data,6,16,1);
         // OLED_ShowNum(72,34,buf_lux[1],3,16,1);
         // OLED_ShowNum(72,52,buffer[2],3,16,1);
         vTaskDelay(100);

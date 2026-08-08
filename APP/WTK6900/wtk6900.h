@@ -4,6 +4,7 @@
 #include "sys.h"
 #include "stdlib.h"	
 
+extern uint8_t receive_data;
 extern uint8_t buffer[3];
 void WTK6900_Init(u32 bound);
 
