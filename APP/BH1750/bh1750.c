@@ -1,9 +1,10 @@
 #include "bh1750.h"
 #include "delay.h"
 #include "led.h"
+#include "light.h"
 
 #define LUX_ON_THRESH    20.0f
-#define LUX_OFF_THRESH   70.0f
+#define LUX_OFF_THRESH   80.0f
 // ========== 底层I2C操作 ==========
 
 // 低通滤波缓存全局静态变量
@@ -295,6 +296,7 @@ float set_led_on(void)
         if(lux <= LUX_ON_THRESH)
         {
             LED0 = 0;
+            LIGHT = 1;
             led_state = 1;
         }
     }
@@ -304,6 +306,7 @@ float set_led_on(void)
         if(lux >= LUX_OFF_THRESH)
         {
             LED0 = 1;
+            LIGHT = 0;
             led_state = 0;
         }
     }

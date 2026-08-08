@@ -10,6 +10,7 @@
 #include "stepper_motor.h"
 #include "wtk6900.h"
 #include "bh1750.h"
+#include "light.h"
 /************************************************
  ALIENTEK 战舰STM32F103开发板 FreeRTOS实验2-1
  FreeRTOS移植实验-库函数版本
@@ -55,6 +56,7 @@ int main(void)
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);//设置系统中断优先级分组4	 
 	delay_init();	    				//延时函数初始化
     LED_Init();
+	LampLight_Init();
 	WTK6900_Init(9600);	
     HDC1080_Init();
     StepperMotor_Init();  //步进电机初始化
@@ -115,14 +117,18 @@ void led0_task(void *pvParameters)
 
 //LED1任务函数
 void led1_task(void *pvParameters)
-{
+{ 
     static float raw_temp;
     static float temp;
     static float humi;
     // xTimerStart(AutoReloadTimer_Handle,0);	//开启周期定时器
     while(1)
     {
-        set_led_on();
+        uint64_t timestamp = xTaskGetTickCount();
+        if(timestamp >= 5000)//5s后
+        {
+            set_led_on();
+        }
         HDC1080_ReadTempHum(&raw_temp, &humi);
         temp = HDC1080_ReadTemp_Smooth(raw_temp);
         OLED_Display_Temp(temp,humi);
